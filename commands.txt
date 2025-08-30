@@ -1,0 +1,91 @@
+Pasos:
+
+1- Levnatar un contenedor con una imagen de ubuntu y que instalemos paquetes necesarios para los ejercicios
+
+    1.1- docker iniciar container:
+
+    docker run -dit --name ubuntu-playground ubuntu:latest
+
+    1.2- ingresar al container
+
+    docker exec -it ubuntu-playground bash
+
+
+    1.3 - informativo de paquetes extra:
+
+    vim, nano, less -> editores / visores de texto
+
+    man-db -> manuales
+    passwd -> nos permite gestionar passwords y cambiarlas
+    adduser-> nos permite agregar o crear usuarios de manera simple
+    procps-> ps, top, free, kill (para ver procesos y memoria)
+    net-tools-> ifconfig, netstat, route
+    iproute2-> ips a ips (herramientas de redes)
+    cron -> crontab(cronjobs)
+    findutils-> find, xargs (para la busqueda)
+    grep-> busqueda por contenido dentro de los archivos
+    util-linux -> lsblk, fdisk, mount, umount,etc (discos/particiones)
+    lsof -> archivos y sockets abiertos
+    tree -> me permite ver en estructura de arboles los directorios
+    plocate-> para buscar por indices
+    htop -> monitor interactivo de procesos.
+
+    comando para instalar:
+
+    apt-get update && apt-get install -y \
+    > vim nano less man-db \
+    > sudo passwd adduser \
+    > procps psmisc \
+    > net-tools iproute2 \
+    > cron \
+    > findutils grep coreutils \
+    > util-linux lsof tree \
+    > plocate \
+    > htop
+
+
+2- Probar los comandos de ubuntu y detallar su uso.
+
+    Lista de comandos:
+
+
+    (*)Comandos simples para navegacion y visualizacion:
+
+    -> pwd
+    -> ls -l -la
+    -> mkdir
+    -> cd /ruta/
+    -> tree 
+
+    (*)usuarios:
+
+    whoami
+    id 
+    useradd luis --> crear mi usuario   /// pwd: fercdev1234  --> tienes que instalarlo y es mas amigable
+    passwd --> cambiamos password: ejemplo: passwd luis --> actualiza de manera rapida
+    su - luis --> teniendo en cuenta que luis es mi usuario, me permite loguearme
+    adduser--> nativo- viene dentro existe permite la creacion de usuarios, pero es mas complejo, poco amigable
+
+    (*) busqueda de archivos
+    find / --> buscar por nombre
+    locate archivo  --> buscar un archivo y sirve con el paquete mlocate
+    which --> ruta 
+    whereis ls --> busca los binarios
+
+    (*) archivos y su contenido 
+    touch archivo.txt -> creo mi archivo en blanco
+    nano archivo.txt --> edita el nuevo archivo --> CTRL + O (para guardar) y CTRL + X (para solo salir)
+    cat archivo.txt --> muestra el contenido de mi archivo
+    less archivo.txt --> muestra por paginado
+    head -n 2 archivo.txt --> muestra primeras 2 lineas
+    tail -f archivo.txt --> ultimas lineas en tiempo real   (OJO ES DE LOS MAS USADOS)
+    echo "texto" --> para crear contenido (echo "texto" > archivo.txt) 
+        para agregar segunda linea (echo "segunda linea" >> archivo.txt)
+        para printear log de algun proceso (echo "informativo de progreso")
+
+
+    grep "textoPreciso" arhicoDondeSeBusca.txt --> hace la busqueda de la coicidencia
+    grep -r "textoDeBusqueda" /var/www/ruta --> hace un busqueda de manera recursiva
+
+
+3- Validar escenarios.
