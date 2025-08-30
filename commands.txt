@@ -159,4 +159,20 @@ Pasos:
     util: groupadd devs --> para crear el grupo
     util: getent group devs2 || groupadd devs2 --> para validar la existencia y crear en caso no exista
 
+
+
+
+    (*) gestion de discos:
+    lsblk --> para visualizar los discos y sus particiones
+    fdisk -l  --> muestra una tabla detallada de discos
+    parted -l --> alternativa moderna para ver particiones 
+
+    df -h --> para ver el espacio de cada particion montada
+
+    du -sh /app/www/file.txt    --> para ver el espacio que ocupa un directorio o archivos
+    du -sh /app/www/*
+
+    lsblk -f --> para ver informacion detallada de discos orientado al filesystem type
+
+    
 3- Validar escenarios.
