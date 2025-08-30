@@ -87,5 +87,76 @@ Pasos:
     grep "textoPreciso" arhicoDondeSeBusca.txt --> hace la busqueda de la coicidencia
     grep -r "textoDeBusqueda" /var/www/ruta --> hace un busqueda de manera recursiva
 
+    (*) revision de procesos
+    top --> monitor de procesos
+    htop --> monitor mas amigable de visualizacion de procesos
+    sleep 1000 & --> comando para enviar un proceso en segundo plano, palabra clave del comando sleep
+    ps aux | grep sleep --> buscamos el proceso por la palabra clave "sleep"
+
+    pkill sleep --> elimina el proceso con la palabra clave sleep
+    kill 5145 --> elimina el proceso por el ID identificador PID
+
+    (*) procesos cronjob 
+    service cron start --> para iniciarlizar el proceso de cron 
+    crontab -l  --> verificar crons en ejecucion
+    echo "* * * * * date >> /tmp/cron.log" | crontab -   --> para crear un cronjob
+    ps aux | grep cron   --> para verificar el proceso cron en ejecucion
+    crontab -e --> para editar los cronjobs en ejecucion y removerlos o actualizarlos
+    crontab -r --> para eliminar todos los cronjobs en ejecucion del usuario
+    service cron stop --> para detener el proceso cron (Una vez que ya no lo necesite)
+
+    (*) permisos y propiedad de carpetas
+
+    CHMOD ---
+
+    x= execute
+    r= read
+    w= write
+
+    Entender el peso de cada privilegio
+    1- OCTAL 
+        r=4
+        w=2
+        x=1
+    ----------------------------------------
+        rwx= 4 + 2 + 1 = 7
+        rw-= 4 + 2 + 0 = 6
+        r-x= 4 + 0 + 1 = 5
+        r--= 4 + 0 + 0 = 4
+        --x= 0 + 0 + 1 = 1
+        ---= 0 + 0 + 0 = 0
+    ---------------------------------------------
+    chmod 750 archivo.txt
+
+    7--> bloque 1 corresponde al USUARIO
+    5--> bloque 2 corresponde al GRUPO
+    0--> bloque 3 corresponde al OTRO
+
+    -------------------------------------
+    2- SIMBOLICA
+    - u=user(owner), g=group, o=others, a=all
+    ejemplos:
+    (+) significa agregar permisos
+    chmod u+x script.sh --> le doy el privilegio de ejecutar al owner
+    chmod g+w archivo.txt --> le doy el privilegio de escribir al grupo
+    (-) remover permisos
+    chmod o-r archivo.txt --> remuevo el permiso de lectura
+
+    chmod u=rw, g=r,o= archivo.txt --> usuario u owner tiene lectura y escritura. Grupo solo tiene lectura y otros no tiene 
+                                    nada de permisos
+    chmod a+rw carpeta/     --> todos pueden leer y editar (usar con precausion)
+
+
+    CHOWN ---
+    cambiar de propietario o grupo 
+
+    chown user archivo.txt
+    chown user1:group1 archivo.txt
+    chown :group2 archivo.txt
+    chown -R usuario:grupo carpeta/
+
+    util: getent group devs --> para validar la existencia del grupo
+    util: groupadd devs --> para crear el grupo
+    util: getent group devs2 || groupadd devs2 --> para validar la existencia y crear en caso no exista
 
 3- Validar escenarios.
