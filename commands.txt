@@ -174,5 +174,32 @@ Pasos:
 
     lsblk -f --> para ver informacion detallada de discos orientado al filesystem type
 
+
+2.5- Comamdos para crear mi imagen custom de DOCKER 
+
+    Pasos 
+    1- Crear un archivo Dockerfile // DockerFile
+    2- Construir la imagen gracias al archivo "Dockerfile"
+        -> comando a utilizar:
+            docker build -t ubuntu-playground-image .      || (Nota:) El comando debe de usarse en la ruta de la carpeta donde se encuentra el Dockerfile
     
+    3- Validar la construccion de la imagen:
+        -> comando a utilizar:
+            docker images               || (Nota:) Debe figurar el nombre de la imagen que se le ha dado en este caso "ubuntu-playground-image" 
+
+    4- Levantar un nuevo contenedor con la imagen previamente construida:
+
+        4.1 - En caso el contenedor con el nombre "ubuntu-playground" ya exista debemos de eliminarlo y recrearlo
+            4.1.1 - docker ps -a    \\ Lista todos los contenedores con sus estados
+            4.1.2 - Identifico el ID y procedo a eliminarlo docker rm "id...."   // ejemplo: docker rm ab5b418fd9e7
+
+        4.2 - Comando para crear nuevo contenedor con mi imagen construida:
+            docker run -dit --name ubuntu-playground ubuntu-playground-image:latest
+    5- Conectarse a un contenedor en ejecucion:
+        5.1- Ejecutar el comando para ingresar a la bash o terminal del contenedor de ubuntu:
+
+            docker exec -it ubuntu-playground bash
+
+
+
 3- Validar escenarios.
