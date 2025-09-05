@@ -39,7 +39,7 @@ Pasos:
     > net-tools iproute2 \
     > cron \
     > findutils grep coreutils \
-    > util-linux lsof tree \
+    > util-linux lsof tree ufw \
     > plocate \
     > htop
 
@@ -202,4 +202,39 @@ Pasos:
 
 
 
-3- Validar escenarios.
+3- Comandos para redes.
+    -> ip a --> nos mostraba las interfaces de red dentro del servidor de linux
+    -> ip a | grep inet --> mostraba las ips asignadas
+
+    hostname -I --> visualiza direccion ip asignada
+
+    ss --> comando para ver todas las conexiones activas 
+
+    ss -tuln --> muestra conexiones activas teniendo en cuenta
+                -> -t : protocolo TCP
+                -> -u : protocolo UDP
+                -> -l : los puertos que estan en escucha
+                -> -n : muestra los ips y puertos de manera numerica 
+
+    netstat -tuln --> similar comportamiento que "ss" pero requiere el paquete "net-tools"
+
+
+
+    ufw enable  --> luego de instalar el paquete UFW necesitamos habilitarlo
+
+    habilitar puertos: 
+    ufw allow 80/tcp --> habilita el puerto 80  (http)
+    ufw allow 443/tcp --> habilita puerto 443 (https)
+    ufw allow 8080/tcp --> puerto habilitado 8080 para otro aplicativo
+
+    ufw deny 22/ssh --> deniega el acceso al puerto 22
+    ufw status --> estado de tus puertos 
+    ufw status verbose --> estado detallado
+    ufw app list --> listar las reglas que han habilitado por perfil
+
+    ufw disable --> deshabilitar el firewall 
+    
+
+
+
+
