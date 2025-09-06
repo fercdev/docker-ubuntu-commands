@@ -1,0 +1,11 @@
+services:
+  ubuntu-playground:
+    image: ubuntu-playground-image:latest
+    container_name: ubuntu-playground
+    volumes:
+      - datos_app:/app
+      - datos_www:/var/www
+    command: tail -f /dev/null
+volumes:
+  datos_app: {}
+  datos_www: {}
